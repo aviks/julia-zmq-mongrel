@@ -1,7 +1,9 @@
 ## ZMQ and Mongrel2 handlers for Julia
 
-- ** ZMQ interface, using the ZMQ C API
-- ** Mongrel2 Handler
+- ZMQ interface, using the ZMQ C API
+- Mongrel2 handler interface (Native julia)
+
+ZMQ and Mongrel needs to be installed. 
 
 ```
 load ("jl/mongrel2.jl")
@@ -17,6 +19,6 @@ end
 ```
 ## License
 
-2 Clause BSD. See LICENSE.md
+BSD. See LICENSE.md
 
 
