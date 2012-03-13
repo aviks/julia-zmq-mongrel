@@ -1,0 +1,118 @@
+#Testing the performace of the echo handler (m2_handlertest)
+#MacbookAir OSX 10.6 1.8GHz Intel Core 2 Duo
+#Client on the same machine
+
+#Single worker, 10000 requests accross 10 threads
+$ ab -n 10000 -c 10  http://localhost:6767/handlertest/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        
+Server Hostname:        localhost
+Server Port:            6767
+
+Document Path:          /handlertest/
+Document Length:        359 bytes
+
+Concurrency Level:      10
+Time taken for tests:   17.215 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      3990000 bytes
+HTML transferred:       3590000 bytes
+Requests per second:    580.90 [#/sec] (mean)
+Time per request:       17.215 [ms] (mean)
+Time per request:       1.721 [ms] (mean, across all concurrent requests)
+Transfer rate:          226.35 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0      14
+Processing:     3   17   7.1     15     102
+Waiting:        3   17   7.1     15     102
+Total:          3   17   7.1     15     102
+
+Percentage of the requests served within a certain time (ms)
+  50%     15
+  66%     16
+  75%     18
+  80%     19
+  90%     25
+  95%     29
+  98%     42
+  99%     46
+ 100%    102 (longest request)
+
+#Two worker, 10000 requests accross 10 threads
+ab -n 10000 -c 10  http://localhost:6767/handlertest/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        
+Server Hostname:        localhost
+Server Port:            6767
+
+Document Path:          /handlertest/
+Document Length:        359 bytes
+
+Concurrency Level:      10
+Time taken for tests:   10.388 seconds
+Complete requests:      10000
+Failed requests:        1
+   (Connect: 0, Receive: 0, Length: 1, Exceptions: 0)
+Write errors:           0
+Total transferred:      3989601 bytes
+HTML transferred:       3589641 bytes
+Requests per second:    962.66 [#/sec] (mean)
+Time per request:       10.388 [ms] (mean)
+Time per request:       1.039 [ms] (mean, across all concurrent requests)
+Transfer rate:          375.06 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.5      0       6
+Processing:     1   10   5.8      9      44
+Waiting:        0   10   5.8      9      44
+Total:          1   10   5.8     10      45
+
+Percentage of the requests served within a certain time (ms)
+  50%     10
+  66%     12
+  75%     14
+  80%     15
+  90%     17
+  95%     19
+  98%     25
+  99%     35
+ 100%     45 (longest request)
